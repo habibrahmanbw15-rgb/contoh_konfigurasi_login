@@ -84,6 +84,46 @@ def handle_post(uri, http_version, data):
     crlf = b'\r\n'
     response = b''.join([response_line, crlf, entity_header, crlf, crlf, message_body])
     return response
+# Tambahkan ini di bagian paling bawah webserver.py
+def handler(request):
+    """
+    Fungsi Entrypoint khusus untuk Vercel Serverless.
+    Fungsi ini akan menangkap request dari Vercel dan mengarahkannya
+    ke logika pemrosesan RPC atau HTML yang sudah kamu buat.
+    """
+    # Mengambil path URL (misal: /proses_login.rpc atau /index.html)
+    path = request.path
+    method = request.method
+
+    if method == "POST" and "proses_login.rpc" in path:
+        # Mengambil data body POST
+        body = request.body.read().decode('utf-8')
+        
+        # Jalankan logika pemisahan data string (split) milikmu di sini
+        # Contoh sederhana dari logika yang kita perbaiki kemarin:
+        if body:
+            try:
+                # Sesuaikan dengan cara parsing di handle_post-mu
+                # Misal hasil akhirnya mengirim string "sukses" atau "gagal"
+                if "username=ples" in body and "paswd=ples" in body:
+                    return {
+                        "statusCode": 200,
+                        "headers": {"Content-Type": "text/plain"},
+                        "body": "sukses"
+                    }
+            except:
+                pass
+        return {
+            "statusCode": 200,
+            "headers": {"Content-Type": "text/plain"},
+            "body": "gagal"
+        }
+        
+    # Jika tidak ada yang cocok, biarkan Vercel melempar ke static htdocs
+    return {
+        "statusCode": 404,
+        "body": "Not Found di Python Handler"
+    }
 
 if __name__ == "__main__":
     tcp_server()

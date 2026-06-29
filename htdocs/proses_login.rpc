@@ -2,7 +2,7 @@
 username = _POST['username']
 paswd = _POST['paswd']
 
-if(username=='ambatukam' and paswd=='ambatukam'):
+if(username=='admin123' and paswd=='admin123'):
     emit('sukses')
 else:
     emit('gagal')
