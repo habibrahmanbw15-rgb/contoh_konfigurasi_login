@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "webserver.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "htdocs/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*\\.rpc)",
+      "dest": "webserver.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "htdocs/$1"
+    }
+  ]
+}
