@@ -1,0 +1,4 @@
+{%
+# Di masa depan, di sini bisa ditaruh kode untuk menghapus session/cookie
+emit('logout_sukses')
+%}

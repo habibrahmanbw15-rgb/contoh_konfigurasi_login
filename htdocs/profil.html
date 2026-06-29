@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Link</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<style>
+    /* Reset */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#d7d8e2;
+}
+
+/* Cover */
+
+.cover{
+    width:100%;
+    height:180px;
+    background-image:url(sinematik.jpeg);
+    background-size:cover;
+    background-position:center;
+
+}
+
+/* Container */
+
+.container{
+    width:90%;
+    max-width:450px;
+    margin:auto;
+    text-align:center;
+    margin-top:-70px;
+}
+
+/* Foto Profil */
+
+.foto{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    border:5px solid white;
+    object-fit:cover;
+}
+/* Nama */
+h1{
+    margin-top:20px;
+    font-size:38px;
+}
+p{
+    font-size:22px;
+    margin-bottom:30px;
+}
+/* Sosial Media */
+.sosial{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:40px;
+}
+.sosial a{
+    width:55px;
+    height:55px;
+    background:#222;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-decoration:none;
+    font-size:25px;
+    transition:0.3s;
+}
+.sosial a:hover{
+    transform:scale(1.1);
+}
+/* Menu */
+.menu{
+    background:#ececf6;
+    margin-bottom:25px;
+    padding:22px;
+    border-radius:40px;
+    box-shadow:0 6px 12px rgba(0,0,0,.2);
+}
+.menu a{
+    text-decoration:none;
+    color:#222;
+    font-size:22px;
+    font-weight:bold;
+}
+.menu:hover{
+    transform:translateY(-3px);
+    transition:.3s;
+}
+
+</style>
+<body>
+    <div class="cover"></div>
+    <div class="container">
+        <img src="kumalala.jpeg" class="foto">
+        <h1>Kumalala Waduh</h1>
+        <p>Photographer</p>
+        <div class="sosial">
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+
+        <div class="menu">
+            <a href="#">www.yourwebsite.com</a>
+        </div>
+
+        <div class="menu">
+            <a href="#">My Portfolio</a>
+        </div>
+
+        <div class="menu">
+            <a href="#">Sign My Petition</a>
+        </div>
+
+        <div class="menu">
+            <a href="#">Explore My Online Store</a>
+        </div>
+
+        <div class="menu">
+            <a href="#" id="btn-logout">Logout</a>
+        </div>
+
+    </div>
+    <script>
+        $("#btn-logout").on("click", function(event) {
+            event.preventDefault(); // Mencegah link '#' melompat ke atas halaman
+            
+            // Tembak AJAX ke file rpc khusus logout
+            $.post("logout.rpc").done(function(data) {
+                if (data.trim() === "logout_sukses") {
+                    // Pindah ke halaman login setelah server mengizinkan
+                    window.location.href = "praktek.html";
+                }
+            });
+        });
+    </script>
+</body>
+</html>
